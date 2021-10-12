@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 261853141}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 1716091091}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: 2105267989}
   - component: {fileID: 2105267988}
   - component: {fileID: 2105267994}
+  - component: {fileID: 2105267995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -554,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea7851d197a45049833b403e51b9b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 2
+  rotationSpeed: 5
   lookXLimit: 75
 --- !u!114 &2105267989
 MonoBehaviour:
@@ -569,7 +570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  jumpLength: 3
+  jumpLength: 4.5
+  jumpCount: 0
 --- !u!136 &2105267990
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -664,3 +666,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &2105267995
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105267987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31324863, y: 0.0628258, z: 0.22533563}
+  m_Center: {x: 0.007630825, y: -0.9700902, z: -0.016941667}

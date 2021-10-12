@@ -13,7 +13,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5db7b109-7f97-6088-40fb-9ab1b131d56e}</ProjectGuid>
+    <ProjectGuid>{8702f27d-b583-d0d5-e960-c1121d3df480}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -622,34 +622,34 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.20f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/d.nathiez/Documents/Unity Projects/Cours UNITY - FPS/Unity FPS/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
