@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    
+    public GameObject bulletPrefabs;
+    public Transform shootCanonT;
     public float moveSpeed = 1;
     public float jumpLength = 1;
     public int jumpCount = 0;
@@ -26,6 +27,14 @@ public class PlayerController : MonoBehaviour
         
         Debug.DrawRay(transform.position, transform.forward*5, Color.red);
         Debug.DrawRay(transform.position, transform.right*5, Color.green);
+    }
+
+    private void Shoot()
+    {
+        if (Input.GetButtonDown("Shoot"))
+        {
+            //créer la bullet
+        }
     }
 
     private void Jump()
