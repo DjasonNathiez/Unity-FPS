@@ -8,20 +8,100 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public GameObject bulletPrefabs;
     public Transform shootCanonT;
+
+
     public float moveSpeed = 1;
+    public int runSpeed = 3;
+    public int walkSpeed = 2;
+
     public float jumpLength = 1;
     public int jumpCount = 0;
+    
+
+    public float energyMax;
+    public float energyActual;
+    public float energyConsumeSpeed;
+    public float energyCD;
+    public bool energyOnCD;
+    public float energyUpSpeed;
+    public bool isRunning = false;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        moveSpeed = walkSpeed;
+        energyActual = energyMax;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //deplacement
         rb.velocity = transform.forward * Input.GetAxis("Vertical") * moveSpeed +
                       transform.right * Input.GetAxis("Horizontal") * moveSpeed + new Vector3(0, rb.velocity.y, 0);
+
+
+        //run
+        if (Input.GetButtonDown("Run") && rb.velocity.magnitude != 0 && energyActual != 0)
+        {
+            moveSpeed = runSpeed;
+            isRunning = true;
+            
+
+            Debug.Log("running");
+        }
+
+        if (Input.GetButtonUp("Run"))
+        {
+            moveSpeed = walkSpeed;
+            isRunning = false;
+            Debug.Log("not running");
+        }
+
+
+
+
+        if(isRunning == true)
+        {
+
+            energyActual -= energyConsumeSpeed * Time.deltaTime;
+        }
+
+        if(energyActual <= 0)
+        {
+            energyActual = 0;
+            isRunning = false;
+            moveSpeed = walkSpeed;
+            energyOnCD = true;
+        }
+
+        if(energyActual > energyMax)
+        {
+            energyActual = energyMax;
+        }
+
+        if(energyOnCD == true)
+        {
+            energyCD -= Time.deltaTime;
+        }
+       
+        if(isRunning == false)
+        {
+
+            energyActual += energyUpSpeed * Time.deltaTime;
+            energyOnCD = true;
+        }
+
+    
+        if(energyCD <= 0)
+        {
+            energyCD = 5;
+            energyOnCD = false;
+        }
+
+
 
         Jump();
         
