@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
+using Slider = UnityEngine.UI.Slider;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,8 +13,8 @@ public class PlayerController : MonoBehaviour
     public Transform shootCanonT;
 
 
-    public float moveSpeed = 1;
-    public int runSpeed = 3;
+    public float moveSpeed = 2;
+    public int runSpeed = 5;
     public int walkSpeed = 2;
 
     public float jumpLength = 1;
@@ -21,15 +24,25 @@ public class PlayerController : MonoBehaviour
     public float energyMax;
     public float energyActual;
     public float energyConsumeSpeed;
-    public float energyCD;
-    public bool energyOnCD;
-    public float energyUpSpeed;
+    public float energyConsumeSpeedLow;
+    public float energyConsumeSpeedFast;
+    public float energyRegen;
+    public float energyRegenLow;
+    public float energyRegenFast;
+    public int energyToRun;
+
     public bool isRunning = false;
+    public bool canRun = true;
+    public bool energyReloading;
+
+    public Slider energySlider;
+    public GameObject energyFillImage;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         moveSpeed = walkSpeed;
         energyActual = energyMax;
     }
@@ -38,83 +51,102 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        //deplacement
+        //deplacement marche
         rb.velocity = transform.forward * Input.GetAxis("Vertical") * moveSpeed +
                       transform.right * Input.GetAxis("Horizontal") * moveSpeed + new Vector3(0, rb.velocity.y, 0);
+        
+        Running();
 
 
-        //run
-        if (Input.GetButtonDown("Run") && rb.velocity.magnitude != 0 && energyActual != 0)
-        {
-            moveSpeed = runSpeed;
-            isRunning = true;
-            
-
-            Debug.Log("running");
-        }
-
-        if (Input.GetButtonUp("Run"))
-        {
-            moveSpeed = walkSpeed;
-            isRunning = false;
-            Debug.Log("not running");
-        }
-
-
-
-
-        if(isRunning == true)
-        {
-
-            energyActual -= energyConsumeSpeed * Time.deltaTime;
-        }
-
-        if(energyActual <= 0)
-        {
-            energyActual = 0;
-            isRunning = false;
-            moveSpeed = walkSpeed;
-            energyOnCD = true;
-        }
-
-        if(energyActual > energyMax)
-        {
-            energyActual = energyMax;
-        }
-
-        if(energyOnCD == true)
-        {
-            energyCD -= Time.deltaTime;
-        }
-       
-        if(isRunning == false)
-        {
-
-            energyActual += energyUpSpeed * Time.deltaTime;
-            energyOnCD = true;
-        }
-
-    
-        if(energyCD <= 0)
-        {
-            energyCD = 5;
-            energyOnCD = false;
-        }
-
+        //energy
+        Endurance();
 
 
         Jump();
+        UIEnergy();
         
         Debug.DrawRay(transform.position, transform.forward*5, Color.red);
         Debug.DrawRay(transform.position, transform.right*5, Color.green);
     }
 
-    private void Shoot()
+    private void Endurance()
     {
-        if (Input.GetButtonDown("Shoot"))
+        //consume speed
+        if (isRunning)
         {
-            //créer la bullet
+            energyActual -= energyConsumeSpeed * Time.deltaTime;
         }
+
+        if (!isRunning)
+        {
+            energyActual += energyRegen * Time.deltaTime;
+        }
+
+        if (energyActual > 100)
+        {
+            energyActual = energyMax;
+        }
+
+        if (energyActual <= 0)
+        {
+            energyActual = 0;
+            canRun = false;
+            energyReloading = true;
+            StartCoroutine(EnduranceReload());
+            
+        }
+        
+        if (energyReloading)
+        {
+            Image fillColor = energyFillImage.GetComponent<Image>();
+            fillColor.material.color = Color.red;
+        }
+
+        if (energyActual < energyToRun && canRun)
+        {
+            energyRegen = energyRegenFast;
+            
+            
+            Image fillColor = energyFillImage.GetComponent<Image>();
+            fillColor.material.color = Color.yellow;
+        }
+        
+        if(energyActual > energyToRun)
+        {
+            energyRegen = energyRegenLow;
+            
+            Image fillColor = energyFillImage.GetComponent<Image>();
+            fillColor.material.color = Color.white;
+        }
+
+    }
+
+    IEnumerator EnduranceReload()
+    {
+
+        yield return new WaitUntil(() => energyActual >= energyToRun);
+        canRun = true;
+        energyReloading = false;
+
+
+    }
+    private void Running()
+    {
+        //run
+        if (Input.GetButtonDown("Run") && rb.velocity.magnitude != 0 && canRun == true)
+        {
+            moveSpeed = runSpeed;
+            isRunning = true;
+
+        }
+            
+
+        if (Input.GetButtonUp("Run"))
+        {
+            moveSpeed = walkSpeed;
+            isRunning = false;
+        }
+        
     }
 
     private void Jump()
@@ -138,6 +170,13 @@ public class PlayerController : MonoBehaviour
         {
             jumpCount += 1;
         }
+    }
+
+    void UIEnergy()
+    {
+        energySlider.maxValue = energyMax;
+        energySlider.value = energyActual;
+
     }
 
 }
