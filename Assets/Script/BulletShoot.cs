@@ -17,7 +17,9 @@ public class BulletShoot : MonoBehaviour
     public int munitionMax;
 
     public TextMeshProUGUI munitionText;
-    
+    public AudioManager audioM;
+
+
 
     void Update()
     {
@@ -53,7 +55,7 @@ public class BulletShoot : MonoBehaviour
         munitionAmount -= 1;
         
         Destroy(prefabInstance, 5);
-
+        audioM.PlaySound("Player Shoot");
         //la bullet part dans la direction que l'on veut
 
     }

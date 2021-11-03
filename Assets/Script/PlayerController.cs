@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public Slider energySlider;
     public GameObject energyFillImage;
+    public AudioManager audioM;
 
     // Start is called before the first frame update
     void Start()
@@ -137,6 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = runSpeed;
             isRunning = true;
+            audioM.PlaySound("Player Run");
 
         }
             
