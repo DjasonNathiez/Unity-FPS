@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         if (isRunning)
         {
             energyActual -= energyConsumeSpeed * Time.deltaTime;
+           
         }
 
         if (!isRunning)
@@ -139,7 +140,6 @@ public class PlayerController : MonoBehaviour
             moveSpeed = runSpeed;
             isRunning = true;
             audioM.PlaySound("Player Run");
-
         }
             
 
@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = walkSpeed;
             isRunning = false;
+            audioM.StopSound("Player Run");
         }
         
     }

@@ -9,10 +9,12 @@ public class Damageable : MonoBehaviour
     public int damageTaken;
 
     public int maxHealth;
+    
     // Start is called before the first frame update
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        FindObjectOfType<AudioManager>().PlaySound("Bullet Impact");
         Debug.Log(this.gameObject.name +" take damage");
     }
 

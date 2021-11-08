@@ -33,6 +33,7 @@ public class BulletShoot : MonoBehaviour
         //reload
         if (Input.GetMouseButtonDown(1))
         {
+            audioM.PlaySound("Reload");
             StartCoroutine(Reloading());
         }
         
@@ -53,9 +54,8 @@ public class BulletShoot : MonoBehaviour
         prefabInstance.GetComponent<Rigidbody>().AddForce(canon.forward * bulletSpeed);
 
         munitionAmount -= 1;
-        
-        Destroy(prefabInstance, 5);
         audioM.PlaySound("Player Shoot");
+        Destroy(prefabInstance, 5);
         //la bullet part dans la direction que l'on veut
 
     }

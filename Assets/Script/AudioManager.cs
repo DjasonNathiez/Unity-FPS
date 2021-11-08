@@ -1,36 +1,77 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField]
-    private Sounds[] soundsSo;
+    [SerializeField] [Header("Sound Effect")]
+    private Sounds[] soundsList;
 
-    private AudioSource m_source;
+    public static AudioManager instance;
 
+    [Header("Musics")] 
+    public Sounds[] musicSounds;
 
-    void Start()
+    public int levelCount;
+    
+    private void Awake()
     {
-        soundsSo = Resources.LoadAll<Sounds>("Sounds");
-        m_source = GetComponent<AudioSource>();
-    }
-
-    public void PlaySound(string soundName)
-    {
-        foreach (Sounds s in soundsSo)
+        if (instance == null)
         {
-            if (soundName == s.name)
-            {
-                m_source.clip = s.clip;
-                m_source.pitch = s.pitch;
-                m_source.loop = s.loop;
-            }
-            
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        DontDestroyOnLoad(gameObject);
+        
+        foreach (Sounds s in soundsList)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+            s.source.pitch = s.pitch;
+            s.source.volume = s.volume;
+        }
+        
+        foreach (Sounds s in musicSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+            s.source.pitch = s.pitch;
+            s.source.volume = s.volume;
         }
 
-        m_source.Play();
+        if (levelCount <= 1)
+        {
+            LoadMusic("Level 1");
+        }
+
+        if (levelCount == 2)
+        {
+            LoadMusic("Level 2");
+        }
     }
 
+    public void PlaySound(string name)
+    {
+        Sounds s = Array.Find(soundsList, sound => sound.soundName == name);
+        s.source.Play();
+    }
+
+    public void StopSound(string name)
+    {
+        Sounds s = Array.Find(soundsList, sound => sound.soundName == name);
+        s.source.Stop();
+    }
+
+    public void LoadMusic(string name)
+    {
+        Sounds s = Array.Find(musicSounds, sounds => sounds.soundName == name);
+        s.source.Play();
+    }
 }
