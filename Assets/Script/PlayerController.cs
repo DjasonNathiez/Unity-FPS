@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool energyReloading;
 
     public Slider energySlider;
-    public GameObject energyFillImage;
+    public Image energyFillImage;
     public AudioManager audioM;
 
     // Start is called before the first frame update
@@ -91,9 +91,15 @@ public class PlayerController : MonoBehaviour
 
         if (energyActual <= 0)
         {
+            
             energyActual = 0;
             canRun = false;
             energyReloading = true;
+            
+            moveSpeed = walkSpeed;
+            isRunning = false;
+            audioM.StopSound("Player Run");
+            
             StartCoroutine(EnduranceReload());
             
         }
@@ -135,7 +141,7 @@ public class PlayerController : MonoBehaviour
     private void Running()
     {
         //run
-        if (Input.GetButtonDown("Run") && rb.velocity.magnitude != 0 && canRun == true)
+        if (Input.GetButtonDown("Run") && rb.velocity.magnitude != 0 && canRun)
         {
             moveSpeed = runSpeed;
             isRunning = true;
@@ -159,6 +165,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpLength, ForceMode.Impulse);
             jumpCount -= 1;
             Debug.Log("Jump button pressed");
+            audioM.PlaySound("Player Jump");
         }
 
         if (jumpCount > 1)
@@ -177,8 +184,7 @@ public class PlayerController : MonoBehaviour
 
     void UIEnergy()
     {
-        energySlider.maxValue = energyMax;
-        energySlider.value = energyActual;
+        energyFillImage.fillAmount = energyActual / energyMax;
 
     }
 
